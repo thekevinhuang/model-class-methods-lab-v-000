@@ -7,6 +7,6 @@ class Classification < ActiveRecord::Base
   end
 
   def self.longest
-    joins(:boat_classifications).where("boat_id=?", Boat.longest.id)
+    Boat.longest.classifications
   end
 end
