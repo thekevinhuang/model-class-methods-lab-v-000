@@ -23,7 +23,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.captain_boat(boat_type)
-    joins(:boats).merge(Boat.boat(boat_type))
+    includes(boats: :classifications).where(classifications: {name: boat_type})
   end
 end
 
