@@ -32,7 +32,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.boat(boat_type)
-    joins(:classifications).where("classifications.name = ?", boat_type)
+    includes(:classifications).where(classifications: {name: boat_type})
   end
 
   def self.longest
