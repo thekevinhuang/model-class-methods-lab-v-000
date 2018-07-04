@@ -10,8 +10,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.talented_seafarers
-    array = sailors & motorguys
-    Captain.where(id: array.map(&:id))
+    where("id IN (?)", self.sailors.pluck(:id) & self.motorguys.pluck(:id))
   end
 
   def self.motorguys
